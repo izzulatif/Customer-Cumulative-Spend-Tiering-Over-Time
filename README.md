@@ -47,12 +47,17 @@ The database (`olist_db`) consists of three core relational tables:
 * **SQL Techniques:** Multi-table joins, order-level aggregation, Window Functions (`SUM() OVER (PARTITION BY ... ORDER BY ...)`), and conditional tiering logic.
 
 #### Sample Output:
+#### Sample Output:
 | order_id | customer_id | customer_state | order_purchase_timestamp | total_spend_per_order | cumulative_spending_per_customer | spending_tier |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| o001 | c101 | SP | 2025-01-05 10:00:00 | 135.00 | 135.00 | Standard |
-| o002 | c101 | SP | 2025-02-10 11:30:00 | 310.00 | 445.00 | High Spender |
-| o003 | c102 | RJ | 2025-01-12 09:15:00 | 92.00 | 92.00 | Standard |
-| o006 | c105 | SP | 2025-02-14 16:45:00 | 445.00 | 445.00 | High Spender |
+| o001 | c101 | SP | 5/1/2025 10:00 | 135 | 135 | Standard |
+| o002 | c101 | SP | 10/2/2025 11:30 | 335 | 470 | High Spender |
+| o003 | c102 | RJ | 12/1/2025 9:15 | 92 | 92 | Standard |
+| o004 | c103 | SP | 15/1/2025 14:20 | 330 | 330 | High Spender |
+| o005 | c104 | MG | 1/2/2025 8:00 | 170 | 170 | Standard |
+| o006 | c105 | SP | 14/2/2025 16:45 | 445 | 445 | High Spender |
+| o007 | c106 | RJ | 1/3/2025 12:00 | 105 | 105 | Standard |
+
 
 ---
 
