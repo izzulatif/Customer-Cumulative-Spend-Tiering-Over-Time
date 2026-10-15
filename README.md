@@ -47,7 +47,6 @@ The database (`olist_db`) consists of three core relational tables:
 * **SQL Techniques:** Multi-table joins, order-level aggregation, Window Functions (`SUM() OVER (PARTITION BY ... ORDER BY ...)`), and conditional tiering logic.
 
 #### Sample Output:
-#### Sample Output:
 | order_id | customer_id | customer_state | order_purchase_timestamp | total_spend_per_order | cumulative_spending_per_customer | spending_tier |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | o001 | c101 | SP | 5/1/2025 10:00 | 135 | 135 | Standard |
