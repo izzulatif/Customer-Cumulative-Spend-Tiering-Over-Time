@@ -3,6 +3,8 @@
 ## Overview
 This repository contains the final capstone project for my SQL portfolio, utilizing a relational schema modeled after the publicly available **Brazilian E-Commerce Public Dataset by Olist**. The project demonstrates advanced SQL querying techniques to analyze customer purchasing behavior, fulfillment logistics bottlenecks, and customer lifetime value/spending tiers.
 
+---
+
 ## Database Schema & Architecture
 The database (`olist_db`) consists of three core relational tables:
 * **`customers`**: Stores unique customer identifiers and regional state locations (`customer_state`).
@@ -17,13 +19,40 @@ The database (`olist_db`) consists of three core relational tables:
 * **Business Objective:** Track repeat customer purchasing cadence and calculate the time elapsed between consecutive orders.
 * **SQL Techniques:** CTEs, `ROW_NUMBER()`, `LAG()`, `DATEDIFF()`, and deterministic tie-breaking.
 
+#### Sample Output:
+| order_id | customer_id | order_purchase_timestamp | prev_timestamp | elapsed_days_since_last_order |
+| :--- | :--- | :--- | :--- | :--- |
+| o001 | c101 | 2025-01-05 10:00:00 | NULL | NULL |
+| o002 | c101 | 2025-02-10 11:30:00 | 2025-01-05 10:00:00 | 36 |
+| o003 | c102 | 2025-01-12 09:15:00 | NULL | NULL |
+| o004 | c103 | 2025-01-15 14:20:00 | NULL | NULL |
+
+---
+
 ### Query 2: Late Delivery Breakdown & Delay Analysis by State
 * **Business Objective:** Identify regional logistics bottlenecks by computing total delivered orders, late delivery volume, failure rates, and average delay duration.
 * **SQL Techniques:** Conditional Aggregation (`SUM(CASE WHEN ...)`, `COUNT(CASE WHEN ... END)`), Date Math (`DATEDIFF`), and `GROUP BY`.
 
+#### Sample Output:
+| customer_state | total_delivered_order | late_delivery | avg_delay_days |
+| :--- | :--- | :--- | :--- |
+| SP | 4 | 2 | 5.0000 |
+| RJ | 2 | 0 | NULL |
+| MG | 0 | 0 | NULL |
+
+---
+
 ### Query 3: Customer Cumulative Spend & Tiering Over Time
 * **Business Objective:** Monitor customer lifetime value growth by calculating order-level totals and running cumulative spending partitioned by customer over time.
 * **SQL Techniques:** Multi-table joins, order-level aggregation, Window Functions (`SUM() OVER (PARTITION BY ... ORDER BY ...)`), and conditional tiering logic.
+
+#### Sample Output:
+| order_id | customer_id | customer_state | order_purchase_timestamp | total_spend_per_order | cumulative_spending_per_customer | spending_tier |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| o001 | c101 | SP | 2025-01-05 10:00:00 | 135.00 | 135.00 | Standard |
+| o002 | c101 | SP | 2025-02-10 11:30:00 | 310.00 | 445.00 | High Spender |
+| o003 | c102 | RJ | 2025-01-12 09:15:00 | 92.00 | 92.00 | Standard |
+| o006 | c105 | SP | 2025-02-14 16:45:00 | 445.00 | 445.00 | High Spender |
 
 ---
 
