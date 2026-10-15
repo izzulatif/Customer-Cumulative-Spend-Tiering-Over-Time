@@ -28,5 +28,5 @@ The database (`olist_db`) consists of three core relational tables:
 ---
 
 ## How to Run
-1. Execute `schema_setup.sql` in MySQL Workbench to build the database and populate test data.
-2. Run `project4_queries.sql` to execute the analytical pipeline.
+1. Execute `E-COMMERCE DATABASE SETUP.sql` in MySQL Workbench to build the database and populate test data.
+2. Run `E-Commerce Order Lifecycle.sql` to execute the analytical pipeline.
